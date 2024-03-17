@@ -1,0 +1,8 @@
+imutils
+keras
+keras-layer-normalization
+h5py
+opencv-python
+tensorflow
+scikit-learn
+matplotlib
