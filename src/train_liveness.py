@@ -1,12 +1,15 @@
+import sys
+sys.path.append("")
+import os 
+
 import matplotlib.pyplot as plt
 import numpy as np
-import PIL
+
 import tensorflow as tf
-
 from tensorflow import keras
-
-from pyimagesearch.livenessnet import LivenessNet
 from keras.optimizers import Adam
+from src.pyimagesearch.livenessnet import LivenessNet
+
 
 INIT_LR = 1e-3
 # BS = 8
@@ -78,18 +81,9 @@ history = model.fit(
   train_ds,
   validation_data=val_ds,
   epochs=EPOCHS,
-  callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)],
-
+  callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', 
+                                          patience=5, restore_best_weights=True)],
 )
-
-acc = history.history['accuracy']
-val_acc = history.history['val_accuracy']
-
-loss = history.history['loss']
-val_loss = history.history['val_loss']
-
-epochs_range = range(EPOCHS)
-
 
 
 face_path = "test_images/28.png"
@@ -119,6 +113,16 @@ with open('models/liveness/model.tflite', 'wb') as f:
 
 model.save("models/liveness/saved_model.h5")
 print("\nsaved model h5")
+
+
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+epochs_range = range(0, len(history.history['accuracy']))
+
 
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)

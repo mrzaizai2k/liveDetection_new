@@ -1,4 +1,6 @@
-
+import sys
+sys.path.append("")
+import os 
 import tensorflow as tf
 
 from tensorflow import keras
@@ -28,7 +30,6 @@ class LivenessNet:
 										include_top=False,
 										weights='imagenet',
 										input_tensor=None,
-										
 										pooling=None,
 									))
 		model.add(tf.keras.layers.Flatten())

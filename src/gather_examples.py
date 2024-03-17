@@ -14,11 +14,11 @@ ap.add_argument("-i", "--input", type=str, required=True,
 	help="path to input video")
 ap.add_argument("-o", "--output", type=str, required=True,
 	help="path to output directory of cropped faces")
-ap.add_argument("-d", "--detector", type=str, required=True,
+ap.add_argument("-d", "--detector", type=str, default="models/face_detector",
 	help="path to OpenCV's deep learning face detector")
 ap.add_argument("-c", "--confidence", type=float, default=0.5,
 	help="minimum probability to filter weak detections")
-ap.add_argument("-s", "--skip", type=int, default=16,
+ap.add_argument("-s", "--skip", type=int, default=5,
 	help="# of frames to skip before applying face detection")
 ap.add_argument("-f", "--flip", type=int, default=0,
 	help="# flip cropped faces")
@@ -81,9 +81,12 @@ while True:
 			(startX, startY, endX, endY) = box.astype("int")
 			face = frame[startY:endY, startX:endX]
 
+			base_file_name = os.path.basename(args["input"])  # Gets 'input_image.jpg'
+			file_name_without_extension = os.path.splitext(base_file_name)[0]
 			# write the frame to disk
 			p = os.path.sep.join([args["output"],
-				"{}_{}.png".format(args["input"][-6:-4],saved)])
+				"{}_{}.png".format(file_name_without_extension,saved)])
+			
 			if args["flip"]	!= 0:
 				_face = cv2.flip(face, 0)
 			else:
