@@ -49,7 +49,7 @@ print("classify_lite", classify_lite)
 
 class_names = ['fake', 'real']
 
-cap = cv2.VideoCapture("test_images/fake.mp4")
+cap = cv2.VideoCapture("test_images/WIN_20240311_23_05_25_Pro.mp4")
 cap.set(3,640)
 cap.set(4,480)
 

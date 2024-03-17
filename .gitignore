@@ -203,4 +203,5 @@ liveness.model/*
 models/
 docs/
 test_images/
+*.zip
 
