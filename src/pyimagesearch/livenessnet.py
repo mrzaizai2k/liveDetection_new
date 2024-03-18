@@ -30,17 +30,20 @@ class LivenessNet:
 										include_top=False,
 										weights='imagenet',
 										input_tensor=None,
+
+										
 										pooling=None,
 									))
 		model.add(tf.keras.layers.Flatten())
 		model.add(tf.keras.layers.Dense(2048, activation='relu'))
-		model.add(tf.keras.layers.Dropout(0.5))
+		# model.add(tf.keras.layers.Dropout(0.5))
 		model.add(tf.keras.layers.Dense(512, activation='relu'))
-		model.add(tf.keras.layers.Dropout(0.3))
+		# model.add(tf.keras.layers.Dropout(0.3))
 		model.add(tf.keras.layers.Dense(64, activation='relu'))
 		model.add(tf.keras.layers.Dense(classes, name='fc2'))
 
 		# return the constructed network architecture
+		model.layers[1].trainable = False
 
 		return model
 
