@@ -16,7 +16,7 @@ ap.add_argument("-o", "--output", type=str, required=True,
 	help="path to output directory of cropped faces")
 ap.add_argument("-d", "--detector", type=str, default="models/face_detector",
 	help="path to OpenCV's deep learning face detector")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
+ap.add_argument("-c", "--confidence", type=float, default=0.8,
 	help="minimum probability to filter weak detections")
 ap.add_argument("-s", "--skip", type=int, default=5,
 	help="# of frames to skip before applying face detection")

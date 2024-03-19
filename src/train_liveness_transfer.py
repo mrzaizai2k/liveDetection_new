@@ -15,11 +15,11 @@ INIT_LR = 1e-4
 DECAY_STEPS=500,
 DECAY_RATE=0.9,
 
-EPOCHS = 100
+EPOCHS = 10
 batch_size = 16
 img_height = 224
 img_width = 224
-PATIENCE = 10
+PATIENCE = 3
 
 liveness_model_path="models/liveness"
 data_dir = "dataset"
