@@ -25,31 +25,7 @@ print(interpreter.get_signature_list())
 classify_lite = interpreter.get_signature_runner('serving_default')
 print("classify_lite", classify_lite)
 
-# model = tf.keras.models.load_model('saved_model.h5')
-# face_path = "test_images/4.png"
-
-# img = tf.keras.utils.load_img(
-#     face_path, target_size=(32, 32)
-# )
-# img_array = tf.keras.utils.img_to_array(img)
-# img_array = tf.expand_dims(img_array, 0) # Create a batch
-
-# predictions_lite = classify_lite(resnet50_input=img_array)['fc2']
-# print("predictions_lite", predictions_lite)
-# score_lite = tf.nn.softmax(predictions_lite)
-# print("score_lite", score_lite)
-
-
-# predictions = model.predict(img_array)
-# print("predictions", predictions)
-# score = tf.nn.softmax(predictions[0])
-# print("score", score)
-
-
-
-class_names = ['fake', 'real']
-
-cap = cv2.VideoCapture("test_images/fake3.mp4")
+cap = cv2.VideoCapture("test_images/real.mp4")
 cap.set(3,640)
 cap.set(4,480)
 
@@ -105,8 +81,6 @@ while(True):
             score_lite = predictions_lite[0]
             print("score_lite", score_lite)
             
-
-
             if score_lite[0] > 0.8:
                 cv2.rectangle(frame, (startX, startY), (endX, endY),
                 (0, 255, 0), 2)
