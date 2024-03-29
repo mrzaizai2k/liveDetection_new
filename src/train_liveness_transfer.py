@@ -16,9 +16,9 @@ DECAY_STEPS=500,
 DECAY_RATE=0.9,
 
 EPOCHS = 10
-batch_size = 16
-img_height = 224
-img_width = 224
+batch_size = 32
+img_height = 200
+img_width = 200
 PATIENCE = 3
 
 liveness_model_path="models/liveness"

@@ -17,7 +17,7 @@ net = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 # load the liveness detector model and label encoder from disk
 print("[INFO] loading liveness detector...")
 
-TF_MODEL_FILE_PATH = 'models/liveness/binary_model.tflite' # The default path to the saved TensorFlow Lite model
+TF_MODEL_FILE_PATH = 'models/liveness/efficientnet_model.tflite' # The default path to the saved TensorFlow Lite model
 
 interpreter = tf.lite.Interpreter(model_path=TF_MODEL_FILE_PATH)
 print(interpreter.get_signature_list())
@@ -25,7 +25,10 @@ print(interpreter.get_signature_list())
 classify_lite = interpreter.get_signature_runner('serving_default')
 print("classify_lite", classify_lite)
 
-cap = cv2.VideoCapture("test_images/real.mp4")
+img_height = 200
+img_width = 200
+
+cap = cv2.VideoCapture("test_images/fake3.mp4")
 cap.set(3,640)
 cap.set(4,480)
 
@@ -71,7 +74,7 @@ while(True):
             # extract the face ROI and then preproces it in the exact
             # same manner as our training data
             face = frame[startY:endY, startX:endX]
-            face = cv2.resize(face, (32, 32))
+            face = cv2.resize(face, (img_height, img_width))
             # Convert the resized face image to a format compatible with TensorFlow
             face = tf.keras.preprocessing.image.img_to_array(face)
             face = tf.expand_dims(face, 0)  # Create a batch
